@@ -1,0 +1,11 @@
+{
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "developer",
+    "password": "administrator",
+    "database": "crash",
+    "entities": ["db/entity/*.js"],
+    "logging": true,
+    "synchronize": true
+}

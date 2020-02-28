@@ -1,3 +1,4 @@
+const typeORM = require('typeorm');
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
@@ -27,14 +28,19 @@ app.use((req, res, next) => {
     next();
 });
 
-//API Routing
-app.use('/v1', apiRouter);
+//DB Connection
+typeORM.createConnection().then(connection => {
+    //API Routing
+    app.use('/v1', apiRouter);
 
-//404
-app.use((req, res, next) => {
-    const error = new Error('Not found');
-    error.status = 404;
-    next(error);
+    //404
+    app.use((req, res, next) => {
+        const error = new Error('Not found');
+        error.status = 404;
+        next(error);
+    });
+}).catch(error => {
+    console.log(error);
 });
 
 //Error Handling
