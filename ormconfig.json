@@ -5,7 +5,7 @@
     "username": "developer",
     "password": "administrator",
     "database": "crash",
-    "entities": ["db/entity/*.js"],
+    "entities": ["dist/api/entities/*.js"],
     "logging": true,
     "synchronize": true
 }
