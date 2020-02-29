@@ -1,4 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, PrimaryColumn, Check } from 'typeorm';
+import { Length, MinLength, IsEmail, Min } from 'class-validator';
 
 export enum UserRole {
     Admin   = 'admin',
@@ -12,6 +13,7 @@ export class User {
     @PrimaryGeneratedColumn('uuid')
     id: string;
 
+    @Length(1, 25)
     @Column({
         type: 'varchar',
         name: 'username',
@@ -21,12 +23,14 @@ export class User {
     })
     username: string;
 
+    @MinLength(8)
     @Column({
         type: 'text',
         name: 'password'
     })
     password: string;
 
+    @IsEmail()
     @Column({
         type: 'text',
         name: 'email',
@@ -73,6 +77,7 @@ export class User {
     })
     avatar?: string
 
+    @Min(0)
     @Column({
         type: 'bigint',
         name: 'balance',
@@ -87,6 +92,7 @@ export class User {
     })
     netProfit: number
 
+    @Min(0)
     @Column({
         type: 'bigint',
         name: 'total_wager',
@@ -94,6 +100,7 @@ export class User {
     })
     totalWagered: number
 
+    @Min(0)
     @Column({
         type: 'integer',
         name: 'total_games',
