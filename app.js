@@ -6,6 +6,9 @@ const bodyParser = require('body-parser');
 
 const apiRouter = require('./api/routes/router');
 
+//DB Connection
+typeORM.createConnection().catch(error => console.log(error));
+
 //Middleware
 app.use(morgan('dev'));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -28,19 +31,14 @@ app.use((req, res, next) => {
     next();
 });
 
-//DB Connection
-typeORM.createConnection().then(connection => {
-    //API Routing
-    app.use('/v1', apiRouter);
+//API Routing
+app.use('/v1', apiRouter);
 
-    //404
-    app.use((req, res, next) => {
-        const error = new Error('Not found');
-        error.status = 404;
-        next(error);
-    });
-}).catch(error => {
-    console.log(error);
+//404
+app.use((req, res, next) => {
+    const error = new Error('Not found');
+    error.status = 404;
+    next(error);
 });
 
 //Error Handling
