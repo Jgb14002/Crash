@@ -4,7 +4,7 @@ import morgan from 'morgan';
 import { createConnection } from 'typeorm';
 import bodyParser from 'body-parser';
 import apiRouter from './api/routes/apiRouter';
-import Error from './models/Error';
+import { Error } from './models/Error';
 
 class App {
 

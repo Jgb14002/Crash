@@ -1,5 +1,5 @@
 import express from 'express';
-import UserController from '../controllers/userController';
+import controller, { UserController } from '../controllers/userController';
 
 class UserRoute {
 
@@ -8,12 +8,13 @@ class UserRoute {
 
     constructor() {
         this.router = express.Router();
-        this.controller = new UserController();
+        this.controller = controller;
         this.bindRoutes();
     }
 
     private bindRoutes(): void {
         this.router.get('/', this.controller.getUsers);
+        this.router.get('/:userId', this.controller.getUserById);
     }
 }
 

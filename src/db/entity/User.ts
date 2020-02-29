@@ -54,9 +54,10 @@ export class User {
     @Column({
         type: 'varchar',
         name: 'nickname',
-        length: 25
+        length: 25,
+        nullable: true
     })
-    nickName: string
+    nickName?: string
 
     @Column({
         type: 'boolean',
