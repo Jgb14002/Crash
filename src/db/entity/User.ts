@@ -6,13 +6,10 @@ export enum UserRole {
 }
 
 @Entity('Users')
-@Check(`"balance" > 0`)
+@Check(`"balance" >= 0 AND "total_wager" >= 0 AND "total_games" >= 0`)
 export class User {
 
-    @PrimaryGeneratedColumn({
-        type: 'uuid',
-        name: 'id',
-    }) 
+    @PrimaryGeneratedColumn('uuid')
     id: string;
 
     @Column({
@@ -81,4 +78,25 @@ export class User {
         default: 0
     })
     balance: number
+
+    @Column({
+        type: 'bigint',
+        name: 'net_profit',
+        default: 0
+    })
+    netProfit: number
+
+    @Column({
+        type: 'bigint',
+        name: 'total_wager',
+        default: 0
+    })
+    totalWagered: number
+
+    @Column({
+        type: 'integer',
+        name: 'total_games',
+        default: 0
+    })
+    totalGames: number
 }
