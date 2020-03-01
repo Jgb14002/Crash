@@ -1,5 +1,5 @@
 import { Entity, PrimaryGeneratedColumn, Column, PrimaryColumn, Check } from 'typeorm';
-import { Length, MinLength, IsEmail, Min } from 'class-validator';
+import { Length, MinLength, IsEmail, ValidatorOptions } from 'class-validator';
 
 export enum UserRole {
     Admin   = 'admin',
@@ -77,7 +77,6 @@ export class User {
     })
     avatar?: string
 
-    @Min(0)
     @Column({
         type: 'bigint',
         name: 'balance',
@@ -92,7 +91,6 @@ export class User {
     })
     netProfit: number
 
-    @Min(0)
     @Column({
         type: 'bigint',
         name: 'total_wager',
@@ -100,7 +98,6 @@ export class User {
     })
     totalWagered: number
 
-    @Min(0)
     @Column({
         type: 'integer',
         name: 'total_games',

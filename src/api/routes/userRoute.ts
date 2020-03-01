@@ -15,6 +15,7 @@ class UserRoute {
     private bindRoutes(): void {
         this.router.get('/', this.controller.getUsers);
         this.router.get('/:userId', this.controller.getUserById);
+        this.router.post('/', this.controller.createUser);
     }
 }
 
